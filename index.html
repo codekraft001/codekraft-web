@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CODEKRAFT — Futuristic Digital Innovation</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <!-- Google Fonts: Premium Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5 CSS (lightweight core) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS for scroll animations (lightweight) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050816;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* custom variables */
+        :root {
+            --primary-blue: #2F80FF;
+            --secondary-blue: #0057D9;
+            --gold: #FFC531;
+            --dark-bg: #050816;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5C3;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0f1f;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 10px;
+        }
+
+        /* glassmorphism & utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            transition: all 0.4s ease;
+        }
+
+        .glass-nav {
+            background: rgba(5, 8, 22, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(47, 128, 255, 0.2);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(47, 128, 255, 0.4);
+            color: white;
+        }
+
+        .btn-outline-light-custom {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: transparent;
+            border-radius: 40px;
+            padding: 12px 28px;
+            font-weight: 500;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-light-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFFFFF, var(--primary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 12px rgba(47, 128, 255, 0.5);
+        }
+
+        /* service cards */
+        .service-card {
+            background: rgba(15, 20, 35, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(47, 128, 255, 0.2);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 35px -15px rgba(47, 128, 255, 0.3);
+            background: rgba(20, 28, 45, 0.8);
+        }
+
+        .tech-icon {
+            background: rgba(47, 128, 255, 0.15);
+            border-radius: 20px;
+            padding: 12px;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .tech-icon:hover {
+            transform: scale(1.05);
+            background: rgba(47, 128, 255, 0.3);
+        }
+
+        .project-card {
+            background: rgba(10, 15, 28, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .timeline-step {
+            background: rgba(47, 128, 255, 0.1);
+            border-radius: 60px;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            border-left: 3px solid var(--primary-blue);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', monospace;
+            color: var(--gold);
+        }
+
+        /* CONTACT */
+        #contact {
+            background: rgba(5, 8, 22, 1)
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(47, 128, 255, 0.1);
+            border: 1px solid rgba(47, 128, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0
+        }
+
+        .contact-form-group {
+            margin-bottom: 1.25rem;
+            position: relative
+        }
+
+        .contact-form-group label {
+            font-size: .8rem;
+            color: var(--text2);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: .5rem;
+            display: block
+        }
+
+        .contact-form-group input,
+        .contact-form-group textarea,
+        .contact-form-group select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: .8rem 1rem;
+            color: var(--text1);
+            font-family: 'Inter', sans-serif;
+            font-size: .9rem;
+            transition: all .3s;
+            outline: none
+        }
+
+        .contact-form-group input:focus,
+        .contact-form-group textarea:focus,
+        .contact-form-group select:focus {
+            border-color: var(--blue);
+            background: rgba(47, 128, 255, 0.05);
+            box-shadow: 0 0 0 3px rgba(47, 128, 255, 0.1)
+        }
+
+        .contact-form-group select option {
+            background: #0a0f28;
+            color: var(--text1)
+        }
+
+        .contact-form-group textarea {
+            resize: vertical;
+            min-height: 120px
+        }
+
+        .contact-form-group input::placeholder,
+        .contact-form-group textarea::placeholder {
+            color: rgba(181, 181, 195, 0.4)
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border: none;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all .3s;
+            font-family: 'Space Grotesk', sans-serif
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(47, 128, 255, 0.5)
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-blue);
+        }
+
+        /* canvas background for 3D */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 30%, #0a0f2a, #050816);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* floating particles */
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* carousel testimonials */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            border: 1px solid rgba(47, 128, 255, 0.25);
+            padding: 2rem;
+            margin: 0 12px;
+        }
+
+        .cursor-glow {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(47, 128, 255, 0.6), transparent);
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transition: transform 0.05s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- custom cursor glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav py-3" style="z-index: 1000;">
+        <div class="container">
+            <div class="row d-flex">
+
+                <a class="navbar-brand fw-bold fs-3 text-white" href="#" style="font-family: 'Space Grotesk';"><img
+                        src="assets/web_logo.png" height="80" alt="">CODEKRAFT</a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item"><a class="nav-link text-white" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-gradient ms-lg-4 ms-0 mt-2 mt-lg-0">Book Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with 3D Canvas -->
+    <section id="home" class="hero-section">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container hero-content py-5">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-7 col-md-12" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="display-2 fw-bold mb-3" style="line-height: 1.2;">Crafting The Future <br>Of Digital
+                        Experiences</h1>
+                    <p class="text-secondary fs-5 mb-4" style="color: var(--text-secondary) !important;">We build
+                        high-performance software, web platforms, mobile applications, and digital ecosystems for modern
+                        businesses.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#contact" class="btn btn-gradient btn-lg">Start Your Project</a>
+                        <a href="#projects" class="btn btn-outline-light-custom btn-lg">View Our Work</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="particle-bg" id="particles-js"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5" style="background: #050816;">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-25 text-primary mb-3 px-3 py-2 rounded-pill">About
+                        Us</span>
+                    <h2 class="section-title">Where Innovation Meets Engineering Excellence</h2>
+                    <p class="text-secondary fs-5">At CODEKRAFT, we engineer intelligent digital solutions that blend
+                        creativity, technology, and performance into unforgettable experiences. Our mission is to shape
+                        the digital frontier with scalable, future-proof systems.</p>
+                    <div class="mt-4 row">
+                        <div class="col-6"><i class="fas fa-check-circle text-primary me-2"></i> 50+ Successful Projects
+                        </div>
+                        <div class="col-6"><i class="fas fa-check-circle text-primary me-2"></i> 10+ Industry Verticals
+                        </div>
+                        <div class="col-6 mt-2"><i class="fas fa-check-circle text-primary me-2"></i> 100%
+                            Client-Centric</div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="glass-card p-4 text-center position-relative">
+                        <i class="fas fa-cube fa-4x text-primary mb-3"></i>
+                        <h4 class="text-white">3D Code Sphere</h4>
+                        <div style="height: 220px;" id="tech-sphere-placeholder">
+                            <canvas id="rotatingCubeCanvas" width="100%" height="200"
+                                style="max-width:100%; border-radius: 20px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section Grid -->
+    <section id="services" class="py-5" style="background: #070c1a;">
+        <div class="container py-4">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-primary bg-opacity-25 px-3 py-2 rounded-pill">What we offer</span>
+                <h2 class="section-title mt-3">Core Digital Services</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="service-card text-center"><i class="fas fa-globe fa-3x text-primary mb-3"></i>
+                        <h4>Web Development</h4>
+                        <p class="text-secondary">Enterprise SaaS, React, Next.js platforms with high performance.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="service-card text-center"><i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                        <h4>Mobile App Dev</h4>
+                        <p class="text-secondary">Flutter, iOS & Android cross-platform native experiences.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="service-card text-center"><i class="fas fa-paint-brush fa-3x text-primary mb-3"></i>
+                        <h4>UI/UX Design</h4>
+                        <p class="text-secondary">Product design, design systems & prototyping.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="service-card text-center"><i class="fas fa-database fa-3x text-primary mb-3"></i>
+                        <h4>Backend Engineering</h4>
+                        <p class="text-secondary">APIs, Cloud systems, scalable databases.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="service-card text-center"><i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                        <h4>AI & Automation</h4>
+                        <p class="text-secondary">Intelligent workflows, AI integrations & LLMs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="service-card text-center"><i
+                            class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                        <h4>DevOps & Infrastructure</h4>
+                        <p class="text-secondary">CI/CD, Docker, AWS, Kubernetes scaling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Floating Icons -->
+    <section class="py-5" style="background: #050816;">
+        <div class="container text-center">
+            <h2 class="section-title" data-aos="fade-up">Tech Stack Mastery</h2>
+            <p class="text-secondary mb-5">Cutting-edge tools we leverage to build future-proof systems.</p>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-2 col-4">
+                    <div class="tech-icon p-3"><i class="fab fa-react fa-3x text-primary"></i>
+                        <p class="mt-2 mb-0">React</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-icon p-3"><i class="fab fa-node-js fa-3x text-success"></i>
+                        <p class="mt-2 mb-0">Node.js</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-icon p-3"><i class="fab fa-python fa-3x text-info"></i>
+                        <p class="mt-2 mb-0">Python</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-icon p-3"><i class="fab fa-aws fa-3x text-warning"></i>
+                        <p class="mt-2 mb-0">AWS</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-icon p-3"><i class="fas fa-database fa-3x text-primary"></i>
+                        <p class="mt-2 mb-0">MongoDB</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-icon p-3"><i class="fab fa-docker fa-3x text-primary"></i>
+                        <p class="mt-2 mb-0">Docker</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="projects" class="py-5 bg-dark bg-opacity-25">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Featured Innovations</h2>
+            <div class="row g-4 mt-2">
+                <div class="col-md-4" data-aos="flip-left">
+                    <div class="project-card p-4"><i class="fas fa-chart-line fa-2x text-primary mb-3"></i>
+                        <h4>Nexus Analytics</h4>
+                        <p class="text-secondary">AI-driven enterprise data platform.</p><span
+                            class="badge bg-primary">React + TensorFlow</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="150">
+                    <div class="project-card p-4"><i class="fas fa-vr-cardboard fa-2x text-primary mb-3"></i>
+                        <h4>MetaSpace XR</h4>
+                        <p class="text-secondary">Immersive 3D collaboration hub.</p><span
+                            class="badge bg-primary">Three.js/WebGL</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="project-card p-4"><i class="fas fa-bolt fa-2x text-primary mb-3"></i>
+                        <h4>SwiftCart</h4>
+                        <p class="text-secondary">High-performance ecommerce suite.</p><span
+                            class="badge bg-primary">Next.js + Stripe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us + Stats -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">Why Global Brands Trust CODEKRAFT</h2>
+                    <p class="text-secondary">We combine deep technical expertise with creative strategy, ensuring
+                        scalable and future-ready digital products.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="stat-number" id="counter1">0</div>
+                            <p>Projects Delivered</p>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-number" id="counter2">0</div>
+                            <p>Technologies Mastered</p>
+                        </div>
+                        <div class="col-6 mt-4">
+                            <div class="stat-number" id="counter3">0</div>
+                            <p>Client Satisfaction</p>
+                        </div>
+                        <div class="col-6 mt-4">
+                            <div class="stat-number" id="counter4">0</div>
+                            <p>Expert Engineers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section class="py-5" style="background: linear-gradient(180deg, #050816, #0a1030);">
+        <div class="container text-center">
+            <h2 class="section-title" data-aos="fade-up">Our Agile Process</h2>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-5" data-aos="fade-up">
+                <span class="timeline-step">Discovery</span> <i
+                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
+                <span class="timeline-step">Planning</span> <i
+                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
+                <span class="timeline-step">Design</span> <i
+                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
+                <span class="timeline-step">Development</span> <i
+                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
+                <span class="timeline-step">Testing</span> <i
+                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
+                <span class="timeline-step">Deployment</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Client Love</h2>
+            <div id="testimonialCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial-card text-center mx-auto" style="max-width: 500px;"><i
+                                class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"CODEKRAFT delivered a stunning, high-performance SaaS platform. Their 3D design and
+                                engineering are world-class."</p>
+                            <h5 class="mt-3">— Sarah Chen, CTO</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card text-center mx-auto" style="max-width: 500px;"><i
+                                class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"Incredible attention to detail and futuristic UX. The team went beyond our
+                                expectations."</p>
+                            <h5 class="mt-3">— Michael Torres, Founder</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card text-center mx-auto" style="max-width: 500px;"><i
+                                class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"Our mobile app conversion rate increased 200% after working with CODEKRAFT."</p>
+                            <h5 class="mt-3">— Lisa Kim, Product Lead</h5>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-5 text-center" style="background: radial-gradient(circle at center, #0f1a3a, #030617);">
+        <div class="container">
+            <h2 class="display-4 fw-bold">Ready To Build Something Incredible?</h2>
+            <p class="fs-5 text-secondary mb-4">Let's transform your vision into a powerful digital product.</p><a
+                href="#contact" class="btn btn-gradient btn-lg px-5">Book A Consultation →</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <h2 class="section-title">Let’s Connect</h2>
+                    <p class="text-secondary"><i class="fas fa-envelope me-2 text-primary"></i> c0d3.kraft@gmail.com</p>
+                    <p class="text-secondary"><i class="fas fa-phone-alt me-2 text-primary"></i> +233 2460 13840 / +233
+                        2615 98852</p>
+                    <p class="text-secondary"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Accra/ Kumasi,
+                        Ghana
+                    </p>
+                    <div class="mt-4 d-flex gap-3"><a href="#" class="text-white fs-3"><i
+                                class="fab fa-twitter"></i></a><a href="#" class="text-white fs-3"><i
+                                class="fab fa-linkedin"></i></a><a href="#" class="text-white fs-3"><i
+                                class="fab fa-github"></i></a></div>
+                </div>
+                <div class="col-lg-7 reveal reveal-delay-2">
+                    <div
+                        style="background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:2.5rem">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="contact-form-group"><label>Full Name</label><input type="text"
+                                        placeholder="Alex Johnson"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-form-group"><label>Email Address</label><input type="email"
+                                        placeholder="alex@company.com"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-form-group"><label>Company</label><input type="text"
+                                        placeholder="Your Company"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-form-group"><label>Project Type</label>
+                                    <select>
+                                        <option value="">Select type...</option>
+                                        <option>Web Development</option>
+                                        <option>Mobile App</option>
+                                        <option>UI/UX Design</option>
+                                        <option>Backend Engineering</option>
+                                        <option>AI & Automation</option>
+                                        <option>DevOps</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="contact-form-group"><label>Message</label><textarea
+                                        placeholder="Tell us about your project, goals, and timeline..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12"><button class="btn-submit" id="submitBtn">Send Message →</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-4 border-top border-primary border-opacity-25" style="background: #020617;">
+        <div class="container d-flex justify-content-between flex-wrap text-secondary"><span>© 2026 CODEKRAFT —
+                Innovation Beyond Limits.</span><span><a href="#" class="footer-link me-3">Privacy</a><a href="#"
+                    class="footer-link">Terms</a></span></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Three.js core -->
+    <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
+  </script>
+    <script type="module">
+        import * as THREE from 'three';
+        AOS.init({ duration: 800, once: true, mirror: false });
+
+        // Hero 3D abstract floating torus knot + particle system
+        const canvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        scene.background = null;
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 8);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        const geometry = new THREE.TorusKnotGeometry(1.2, 0.3, 200, 32, 3, 4);
+        const material = new THREE.MeshStandardMaterial({ color: 0x2f80ff, emissive: 0x0a2a5a, roughness: 0.2, metalness: 0.8 });
+        const knot = new THREE.Mesh(geometry, material);
+        scene.add(knot);
+
+        const ambientLight = new THREE.AmbientLight(0x404060);
+        scene.add(ambientLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+        dirLight.position.set(2, 3, 4);
+        scene.add(dirLight);
+        const backLight = new THREE.PointLight(0x2f80ff, 0.5);
+        backLight.position.set(-1, 1, -3);
+        scene.add(backLight);
+
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsCount = 1200;
+        const starPositions = new Float32Array(starsCount * 3);
+        for (let i = 0; i < starsCount; i++) {
+            starPositions[i * 3] = (Math.random() - 0.5) * 200;
+            starPositions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+            starPositions[i * 3 + 2] = (Math.random() - 0.5) * 80 - 40;
+        }
+        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.08, transparent: true, opacity: 0.6 });
+        const stars = new THREE.Points(starsGeometry, starMaterial);
+        scene.add(stars);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            knot.rotation.x += 0.005;
+            knot.rotation.y += 0.01;
+            knot.rotation.z += 0.007;
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0003;
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // small rotating cube for about section (second canvas)
+        const cubeCanvas = document.getElementById('rotatingCubeCanvas');
+        if (cubeCanvas) {
+            const scene2 = new THREE.Scene();
+            const cam2 = new THREE.PerspectiveCamera(50, 1, 0.1, 10);
+            cam2.position.z = 2;
+            const renderer2 = new THREE.WebGLRenderer({ canvas: cubeCanvas, alpha: true });
+            renderer2.setSize(280, 200);
+            const boxGeo = new THREE.BoxGeometry(1, 1, 1);
+            const edgesGeo = new THREE.EdgesGeometry(boxGeo);
+            const wireMat = new THREE.LineBasicMaterial({ color: 0x2f80ff });
+            const wireframe = new THREE.LineSegments(edgesGeo, wireMat);
+            scene2.add(wireframe);
+            const innerMat = new THREE.MeshStandardMaterial({ color: 0x0057D9, transparent: true, opacity: 0.2 });
+            const cubeSolid = new THREE.Mesh(boxGeo, innerMat);
+            scene2.add(cubeSolid);
+            const ambient2 = new THREE.AmbientLight(0x445566);
+            scene2.add(ambient2);
+            function animCube() { requestAnimationFrame(animCube); cubeSolid.rotation.x += 0.01; cubeSolid.rotation.y += 0.015; wireframe.rotation.x += 0.01; wireframe.rotation.y += 0.015; renderer2.render(scene2, cam2); }
+            animCube();
+            window.addEventListener('resize', () => renderer2.setSize(280, 200));
+        }
+
+        // cursor glow effect
+        const cursor = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+        });
+
+        // Animated Counters (Why Choose Us)
+        function startCounters() {
+            const counters = [
+                { el: document.getElementById('counter1'), target: 58, current: 0 },
+                { el: document.getElementById('counter2'), target: 24, current: 0 },
+                { el: document.getElementById('counter3'), target: 99, current: 0, suffix: '%' },
+                { el: document.getElementById('counter4'), target: 38, current: 0 }
+            ];
+            const interval = setInterval(() => {
+                let allDone = true;
+                counters.forEach(c => { if (c.current < c.target) { c.current += Math.ceil((c.target - c.current) / 12); allDone = false; c.el.innerText = c.current + (c.suffix || ''); } else if (c.el.innerText != c.target + (c.suffix || '')) c.el.innerText = c.target + (c.suffix || ''); });
+                if (allDone) clearInterval(interval);
+            }, 40);
+        }
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { startCounters(); observer.disconnect(); } }); }, { threshold: 0.5 });
+        const countersSection = document.querySelector('#counter1')?.closest('section');
+        if (countersSection) observer.observe(countersSection);
+
+        // simple contact success
+        document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); document.getElementById('formFeedback').innerText = '✨ Message received! We will reach out soon.'; e.target.reset(); });
+    </script>
+    <style>
+        canvas#hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+    </style>
+</body>
+
+</html>
