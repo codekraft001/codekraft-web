@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>CODEKRAFT — Futuristic Digital Innovation</title>
+    <title>CODEKRAFT — Mobile & Web Innovation</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -13,11 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Bootstrap 5 CSS (lightweight core) -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- AOS CSS for scroll animations (lightweight) -->
+    <!-- AOS Scroll Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome 6 (free icons) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -34,7 +34,6 @@
             scroll-behavior: smooth;
         }
 
-        /* custom variables */
         :root {
             --primary-blue: #2F80FF;
             --secondary-blue: #0057D9;
@@ -43,10 +42,8 @@
             --card-bg: rgba(255, 255, 255, 0.05);
             --text-primary: #FFFFFF;
             --text-secondary: #B5B5C3;
-            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        /* custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -60,7 +57,6 @@
             border-radius: 10px;
         }
 
-        /* glassmorphism & utilities */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
@@ -70,9 +66,9 @@
         }
 
         .glass-nav {
-            background: rgba(5, 8, 22, 0.7);
+            background: rgba(5, 8, 22, 0.8);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(47, 128, 255, 0.2);
+            border-bottom: 1px solid rgba(47, 128, 255, 0.3);
         }
 
         .btn-gradient {
@@ -87,7 +83,7 @@
 
         .btn-gradient:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px -5px rgba(47, 128, 255, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(47, 128, 255, 0.5);
             color: white;
         }
 
@@ -124,11 +120,6 @@
             margin-bottom: 1rem;
         }
 
-        .text-glow {
-            text-shadow: 0 0 12px rgba(47, 128, 255, 0.5);
-        }
-
-        /* service cards */
         .service-card {
             background: rgba(15, 20, 35, 0.6);
             backdrop-filter: blur(8px);
@@ -146,17 +137,20 @@
             background: rgba(20, 28, 45, 0.8);
         }
 
-        .tech-icon {
+        .tech-badge {
             background: rgba(47, 128, 255, 0.15);
-            border-radius: 20px;
-            padding: 12px;
-            transition: all 0.3s;
-            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 8px 18px;
+            font-weight: 500;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .tech-icon:hover {
-            transform: scale(1.05);
+        .tech-badge:hover {
             background: rgba(47, 128, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         .project-card {
@@ -166,10 +160,11 @@
             overflow: hidden;
             transition: all 0.4s;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.8rem;
         }
 
         .project-card:hover {
-            transform: translateY(-8px) scale(1.01);
+            transform: translateY(-8px);
             border-color: var(--primary-blue);
             box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.5);
         }
@@ -182,14 +177,54 @@
             border-left: 3px solid var(--primary-blue);
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            font-family: 'Space Grotesk', monospace;
-            color: var(--gold);
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 30%, #0a0f2a, #050816);
         }
 
-        /* CONTACT */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cursor-glow {
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle, rgba(47, 128, 255, 0.7), transparent);
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transition: transform 0.08s linear;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline-step {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+         /* CONTACT */
         #contact {
             background: rgba(5, 8, 22, 1)
         }
@@ -295,79 +330,10 @@
         .footer-link:hover {
             color: var(--primary-blue);
         }
-
-        /* canvas background for 3D */
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .hero-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            background: radial-gradient(circle at 20% 30%, #0a0f2a, #050816);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* floating particles */
-        .particle-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
-
-        /* carousel testimonials */
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            border: 1px solid rgba(47, 128, 255, 0.25);
-            padding: 2rem;
-            margin: 0 12px;
-        }
-
-        .cursor-glow {
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(47, 128, 255, 0.6), transparent);
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: screen;
-            transition: transform 0.05s linear;
-        }
     </style>
 </head>
 
 <body>
-    <!-- custom cursor glow -->
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <!-- Navbar -->
@@ -378,9 +344,7 @@
                 <a class="navbar-brand fw-bold fs-3 text-white" href="#" style="font-family: 'Space Grotesk';"><img
                         src="assets/web_logo.png" height="80" alt="">CODEKRAFT</a>
             </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon text-white"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -391,211 +355,255 @@
                     <li class="nav-item"><a class="nav-link text-white" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
                 </ul>
-                <a href="#contact" class="btn btn-gradient ms-lg-4 ms-0 mt-2 mt-lg-0">Book Consultation</a>
+                <a href="#contact" class="btn btn-gradient ms-lg-4 ms-0 mt-2 mt-lg-0">Start a Project</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with 3D Canvas -->
+    <!-- Hero Section with 3D -->
     <section id="home" class="hero-section">
         <canvas id="hero-canvas"></canvas>
         <div class="container hero-content py-5">
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-7 col-md-12" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="display-2 fw-bold mb-3" style="line-height: 1.2;">Crafting The Future <br>Of Digital
+                    <h1 class="display-2 fw-bold mb-3" style="line-height: 1.2;">Crafting The Future<br>Of Digital
                         Experiences</h1>
-                    <p class="text-secondary fs-5 mb-4" style="color: var(--text-secondary) !important;">We build
-                        high-performance software, web platforms, mobile applications, and digital ecosystems for modern
-                        businesses.</p>
+                    <p class="fs-5 mb-4" style="color: var(--text-secondary);">We build powerful mobile apps with
+                        Flutter & Firebase, and scalable web platforms using Laravel, MySQL, Vue.js & React.js. Modern
+                        solutions for ambitious brands.</p>
                     <div class="d-flex gap-3 flex-wrap">
                         <a href="#contact" class="btn btn-gradient btn-lg">Start Your Project</a>
-                        <a href="#projects" class="btn btn-outline-light-custom btn-lg">View Our Work</a>
+                        <a href="#projects" class="btn btn-outline-light-custom btn-lg">Explore Work</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="particle-bg" id="particles-js"></div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section: highlighting core stack -->
     <section id="about" class="py-5" style="background: #050816;">
         <div class="container py-5">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <span class="badge bg-primary bg-opacity-25 text-primary mb-3 px-3 py-2 rounded-pill">About
-                        Us</span>
-                    <h2 class="section-title">Where Innovation Meets Engineering Excellence</h2>
-                    <p class="text-secondary fs-5">At CODEKRAFT, we engineer intelligent digital solutions that blend
-                        creativity, technology, and performance into unforgettable experiences. Our mission is to shape
-                        the digital frontier with scalable, future-proof systems.</p>
-                    <div class="mt-4 row">
-                        <div class="col-6"><i class="fas fa-check-circle text-primary me-2"></i> 50+ Successful Projects
-                        </div>
-                        <div class="col-6"><i class="fas fa-check-circle text-primary me-2"></i> 10+ Industry Verticals
-                        </div>
-                        <div class="col-6 mt-2"><i class="fas fa-check-circle text-primary me-2"></i> 100%
-                            Client-Centric</div>
+                    <span class="badge bg-primary bg-opacity-25 text-primary mb-3 px-3 py-2 rounded-pill">Who We
+                        Are</span>
+                    <h2 class="section-title">Fresh perspective,<br>solid engineering.</h2>
+                    <p class="text-secondary fs-5">CODEKRAFT is a new-generation software studio specializing in
+                        cross-platform mobile development (Flutter, Firebase) and modern web ecosystems (Laravel, MySQL,
+                        Vue, React). We combine startup agility with robust code to bring your ideas to life — from MVP
+                        to market leader.</p>
+                    <div class="mt-4 d-flex flex-wrap gap-2">
+                        <span class="tech-badge"><i class="fab fa-flutter text-primary"></i> Flutter</span>
+                        <span class="tech-badge"><i class="fas fa-fire text-warning"></i> Firebase</span>
+                        <span class="tech-badge"><i class="fab fa-laravel text-danger"></i> Laravel</span>
+                        <span class="tech-badge"><i class="fas fa-database text-info"></i> MySQL</span>
+                        <span class="tech-badge"><i class="fab fa-vuejs text-success"></i> Vue.js</span>
+                        <span class="tech-badge"><i class="fab fa-react text-primary"></i> React</span>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <div class="glass-card p-4 text-center position-relative">
-                        <i class="fas fa-cube fa-4x text-primary mb-3"></i>
-                        <h4 class="text-white">3D Code Sphere</h4>
-                        <div style="height: 220px;" id="tech-sphere-placeholder">
-                            <canvas id="rotatingCubeCanvas" width="100%" height="200"
-                                style="max-width:100%; border-radius: 20px;"></canvas>
-                        </div>
+                    <div class="glass-card p-4 text-center">
+                        <i class="fas fa-code-branch fa-4x text-primary mb-3"></i>
+                        <h4 class="text-white">Built for scale & performance</h4>
+                        <canvas id="rotatingCubeCanvas" width="300" height="200"
+                            style="max-width:100%; border-radius: 20px;"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section Grid -->
+    <!-- Services tailored to Flutter, Laravel, Vue, React -->
     <section id="services" class="py-5" style="background: #070c1a;">
         <div class="container py-4">
             <div class="text-center mb-5" data-aos="fade-up">
-                <span class="badge bg-primary bg-opacity-25 px-3 py-2 rounded-pill">What we offer</span>
-                <h2 class="section-title mt-3">Core Digital Services</h2>
+                <span class="badge bg-primary bg-opacity-25 px-3 py-2 rounded-pill">What we deliver</span>
+                <h2 class="section-title mt-3">Core Expertise</h2>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="service-card text-center"><i class="fas fa-globe fa-3x text-primary mb-3"></i>
-                        <h4>Web Development</h4>
-                        <p class="text-secondary">Enterprise SaaS, React, Next.js platforms with high performance.</p>
+                    <div class="service-card text-center"><i class="fab fa-flutter fa-3x text-primary mb-3"></i>
+                        <h4>Flutter Mobile Apps</h4>
+                        <p class="text-secondary">iOS & Android, one codebase. Beautiful UI, native performance,
+                            Firebase integration.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-card text-center"><i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
-                        <h4>Mobile App Dev</h4>
-                        <p class="text-secondary">Flutter, iOS & Android cross-platform native experiences.</p>
+                    <div class="service-card text-center"><i class="fab fa-laravel fa-3x text-danger mb-3"></i>
+                        <h4>Laravel Backend</h4>
+                        <p class="text-secondary">REST APIs, admin panels, scalable architecture with MySQL & Redis.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="service-card text-center"><i class="fas fa-paint-brush fa-3x text-primary mb-3"></i>
-                        <h4>UI/UX Design</h4>
-                        <p class="text-secondary">Product design, design systems & prototyping.</p>
+                    <div class="service-card text-center"><i class="fab fa-vuejs fa-3x text-success mb-3"></i>
+                        <h4>Vue.js / React SPA</h4>
+                        <p class="text-secondary">Dynamic dashboards, real-time interfaces, component-driven frontends.
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="service-card text-center"><i class="fas fa-database fa-3x text-primary mb-3"></i>
-                        <h4>Backend Engineering</h4>
-                        <p class="text-secondary">APIs, Cloud systems, scalable databases.</p>
+                    <div class="service-card text-center"><i
+                            class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                        <h4>Firebase Solutions</h4>
+                        <p class="text-secondary">Auth, Firestore, cloud functions, push notifications & real-time sync.
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="service-card text-center"><i class="fas fa-robot fa-3x text-primary mb-3"></i>
-                        <h4>AI & Automation</h4>
-                        <p class="text-secondary">Intelligent workflows, AI integrations & LLMs.</p>
+                    <div class="service-card text-center"><i class="fas fa-database fa-3x text-info mb-3"></i>
+                        <h4>Database Architecture</h4>
+                        <p class="text-secondary">MySQL optimization, data modeling, and migration strategies.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="service-card text-center"><i
-                            class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
-                        <h4>DevOps & Infrastructure</h4>
-                        <p class="text-secondary">CI/CD, Docker, AWS, Kubernetes scaling.</p>
+                    <div class="service-card text-center"><i class="fas fa-mobile-alt fa-3x text-warning mb-3"></i>
+                        <h4>App Store Deployment</h4>
+                        <p class="text-secondary">Complete Play Store & App Store publishing, CI/CD for mobile.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technologies Floating Icons -->
+    <!-- Technologies showcase -->
     <section class="py-5" style="background: #050816;">
         <div class="container text-center">
-            <h2 class="section-title" data-aos="fade-up">Tech Stack Mastery</h2>
-            <p class="text-secondary mb-5">Cutting-edge tools we leverage to build future-proof systems.</p>
+            <h2 class="section-title" data-aos="fade-up">Tech Stack We Master</h2>
+            <p class="text-secondary mb-5">Cutting-edge tools we use to build future-proof systems</p>
             <div class="row justify-content-center g-4">
                 <div class="col-md-2 col-4">
-                    <div class="tech-icon p-3"><i class="fab fa-react fa-3x text-primary"></i>
+                    <div class="tech-badge p-3 d-block text-center"><i class="fab fa-flutter fa-3x text-primary"></i>
+                        <p class="mt-2 mb-0">Flutter</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-badge p-3 d-block text-center"><i class="fab fa-laravel fa-3x text-danger"></i>
+                        <p class="mt-2 mb-0">Laravel</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-badge p-3 d-block text-center"><i class="fab fa-vuejs fa-3x text-success"></i>
+                        <p class="mt-2 mb-0">Vue.js</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="tech-badge p-3 d-block text-center"><i class="fab fa-react fa-3x text-primary"></i>
                         <p class="mt-2 mb-0">React</p>
                     </div>
                 </div>
                 <div class="col-md-2 col-4">
-                    <div class="tech-icon p-3"><i class="fab fa-node-js fa-3x text-success"></i>
-                        <p class="mt-2 mb-0">Node.js</p>
+                    <div class="tech-badge p-3 d-block text-center"><i class="fas fa-database fa-3x text-info"></i>
+                        <p class="mt-2 mb-0">MySQL</p>
                     </div>
                 </div>
                 <div class="col-md-2 col-4">
-                    <div class="tech-icon p-3"><i class="fab fa-python fa-3x text-info"></i>
-                        <p class="mt-2 mb-0">Python</p>
-                    </div>
-                </div>
-                <div class="col-md-2 col-4">
-                    <div class="tech-icon p-3"><i class="fab fa-aws fa-3x text-warning"></i>
-                        <p class="mt-2 mb-0">AWS</p>
-                    </div>
-                </div>
-                <div class="col-md-2 col-4">
-                    <div class="tech-icon p-3"><i class="fas fa-database fa-3x text-primary"></i>
-                        <p class="mt-2 mb-0">MongoDB</p>
-                    </div>
-                </div>
-                <div class="col-md-2 col-4">
-                    <div class="tech-icon p-3"><i class="fab fa-docker fa-3x text-primary"></i>
-                        <p class="mt-2 mb-0">Docker</p>
+                    <div class="tech-badge p-3 d-block text-center"><i class="fas fa-fire fa-3x text-warning"></i>
+                        <p class="mt-2 mb-0">Firebase</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Projects -->
+    <!-- Featured Projects: GitHub & Play Store links (realistic demo) -->
     <section id="projects" class="py-5 bg-dark bg-opacity-25">
         <div class="container">
-            <h2 class="section-title text-center" data-aos="fade-up">Featured Innovations</h2>
-            <div class="row g-4 mt-2">
-                <div class="col-md-4" data-aos="flip-left">
-                    <div class="project-card p-4"><i class="fas fa-chart-line fa-2x text-primary mb-3"></i>
-                        <h4>Nexus Analytics</h4>
-                        <p class="text-secondary">AI-driven enterprise data platform.</p><span
-                            class="badge bg-primary">React + TensorFlow</span>
+            <h2 class="section-title text-center" data-aos="fade-up">Our Latest Builds</h2>
+            <p class="text-center text-secondary mb-5">Live projects on GitHub & Google Play Store</p>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="flip-left">
+                    <div class="project-card text-center">
+                        <i class="fab fa-github fa-3x text-white mb-3"></i>
+                        <h4>TaskFlow Manager</h4>
+                        <p class="text-secondary">Flutter + Firebase task management app with real-time sync. Available
+                            on GitHub.</p>
+                        <a href="#" class="btn btn-outline-light-custom btn-sm mt-2" target="_blank"><i
+                                class="fab fa-github"></i> GitHub Repo</a>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="flip-left" data-aos-delay="150">
-                    <div class="project-card p-4"><i class="fas fa-vr-cardboard fa-2x text-primary mb-3"></i>
-                        <h4>MetaSpace XR</h4>
-                        <p class="text-secondary">Immersive 3D collaboration hub.</p><span
-                            class="badge bg-primary">Three.js/WebGL</span>
+                <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="150">
+                    <div class="project-card text-center">
+                        <i class="fab fa-google-play fa-3x text-success mb-3"></i>
+                        <h4>FitTrack Pro</h4>
+                        <p class="text-secondary">Health & fitness companion (Flutter, Firebase Auth, Cloud Firestore).
+                            Live on Play Store.</p>
+                        <a href="#" class="btn btn-outline-light-custom btn-sm mt-2"><i class="fab fa-google-play"></i>
+                            View on Play Store</a>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
-                    <div class="project-card p-4"><i class="fas fa-bolt fa-2x text-primary mb-3"></i>
-                        <h4>SwiftCart</h4>
-                        <p class="text-secondary">High-performance ecommerce suite.</p><span
-                            class="badge bg-primary">Next.js + Stripe</span>
+                <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="project-card text-center">
+                        <i class="fab fa-laravel fa-3x text-danger mb-3"></i>
+                        <h4>InventoryHub</h4>
+                        <p class="text-secondary">Laravel + Vue.js + MySQL inventory management system. Open source on
+                            GitHub.</p>
+                        <a href="#" class="btn btn-outline-light-custom btn-sm mt-2"><i class="fab fa-github"></i>
+                            GitHub Repo</a>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-4 offset-lg-2" data-aos="flip-left" data-aos-delay="450">
+                    <div class="project-card text-center">
+                        <i class="fab fa-react fa-3x text-primary mb-3"></i>
+                        <h4>React Dashboard Kit</h4>
+                        <p class="text-secondary">Modern admin panel with React + Vite, API integration demo.</p>
+                        <a href="#" class="btn btn-outline-light-custom btn-sm mt-2"><i class="fab fa-github"></i>
+                            GitHub</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="600">
+                    <div class="project-card text-center">
+                        <i class="fab fa-android fa-3x text-secondary mb-3"></i>
+                        <h4>EcoCart</h4>
+                        <p class="text-secondary">Sustainable shopping app – Flutter & Firebase. Published on Play
+                            Store.</p>
+                        <a href="#" class="btn btn-outline-light-custom btn-sm mt-2"><i class="fab fa-google-play"></i>
+                            Play Store</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-gradient">View All on GitHub <i class="fab fa-github ms-2"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us + Stats -->
+    <!-- Why Choose Us (focused on reliability, modern stack, fast delivery) -->
     <section class="py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <h2 class="section-title">Why Global Brands Trust CODEKRAFT</h2>
-                    <p class="text-secondary">We combine deep technical expertise with creative strategy, ensuring
-                        scalable and future-ready digital products.</p>
+                    <h2 class="section-title">Why partner with CODEKRAFT</h2>
+                    <p class="text-secondary">We're a lean team passionate about clean code, seamless UX, and delivering
+                        value fast. As a new company, we pour all our energy into your success — transparent
+                        communication, agile sprints, and post-launch support.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Flutter, Laravel, Vue,
+                            React specialists</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> GitHub & Play Store
+                            proven projects</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Rapid MVP development
+                        </li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Firebase & MySQL optimized backends
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="row text-center">
                         <div class="col-6">
                             <div class="stat-number" id="counter1">0</div>
-                            <p>Projects Delivered</p>
+                            <p>GitHub Repos</p>
                         </div>
                         <div class="col-6">
                             <div class="stat-number" id="counter2">0</div>
-                            <p>Technologies Mastered</p>
+                            <p>Play Store Apps</p>
                         </div>
                         <div class="col-6 mt-4">
                             <div class="stat-number" id="counter3">0</div>
-                            <p>Client Satisfaction</p>
+                            <p>Lines of Crafted Code</p>
                         </div>
                         <div class="col-6 mt-4">
                             <div class="stat-number" id="counter4">0</div>
-                            <p>Expert Engineers</p>
+                            <p>Active Clients</p>
                         </div>
                     </div>
                 </div>
@@ -603,60 +611,40 @@
         </div>
     </section>
 
-    <!-- Process Timeline -->
+    <!-- Process Timeline (simple horizontal style) -->
     <section class="py-5" style="background: linear-gradient(180deg, #050816, #0a1030);">
         <div class="container text-center">
-            <h2 class="section-title" data-aos="fade-up">Our Agile Process</h2>
+            <h2 class="section-title" data-aos="fade-up">How we build together</h2>
             <div class="d-flex flex-wrap justify-content-center gap-3 mt-5" data-aos="fade-up">
                 <span class="timeline-step">Discovery</span> <i
                     class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
-                <span class="timeline-step">Planning</span> <i
-                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
-                <span class="timeline-step">Design</span> <i
+                <span class="timeline-step">Architecture</span> <i
                     class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
                 <span class="timeline-step">Development</span> <i
                     class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
                 <span class="timeline-step">Testing</span> <i
                     class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
-                <span class="timeline-step">Deployment</span>
+                <span class="timeline-step">Launch</span> <i
+                    class="fas fa-arrow-right text-primary fa-lg align-self-center"></i>
+                <span class="timeline-step">Support</span>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Carousel -->
+    <!-- No testimonials yet: replace with a "coming soon" or alternative trust message -->
     <section class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center">Client Love</h2>
-            <div id="testimonialCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="testimonial-card text-center mx-auto" style="max-width: 500px;"><i
-                                class="fas fa-quote-left fa-2x text-primary mb-3"></i>
-                            <p>"CODEKRAFT delivered a stunning, high-performance SaaS platform. Their 3D design and
-                                engineering are world-class."</p>
-                            <h5 class="mt-3">— Sarah Chen, CTO</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="testimonial-card text-center mx-auto" style="max-width: 500px;"><i
-                                class="fas fa-quote-left fa-2x text-primary mb-3"></i>
-                            <p>"Incredible attention to detail and futuristic UX. The team went beyond our
-                                expectations."</p>
-                            <h5 class="mt-3">— Michael Torres, Founder</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="testimonial-card text-center mx-auto" style="max-width: 500px;"><i
-                                class="fas fa-quote-left fa-2x text-primary mb-3"></i>
-                            <p>"Our mobile app conversion rate increased 200% after working with CODEKRAFT."</p>
-                            <h5 class="mt-3">— Lisa Kim, Product Lead</h5>
-                        </div>
-                    </div>
+        <div class="container text-center">
+            <h2 class="section-title">Building trust, one project at a time</h2>
+            <div class="glass-card p-5 mx-auto" style="max-width: 700px;" data-aos="zoom-in">
+                <i class="fas fa-rocket fa-3x text-primary mb-3"></i>
+                <h4>We are just getting started</h4>
+                <p class="text-secondary">As a new studio, every client is a partner. Check our GitHub and Play Store to
+                    see the quality we deliver. The best testimonials are the apps we ship — and we can't wait to build
+                    yours.</p>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <span class="tech-badge"><i class="fab fa-github"></i> 5+ public repos</span>
+                    <span class="tech-badge"><i class="fab fa-google-play"></i> 3 live apps</span>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
-                    data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
-                    data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
             </div>
         </div>
     </section>
@@ -664,9 +652,10 @@
     <!-- CTA Banner -->
     <section class="py-5 text-center" style="background: radial-gradient(circle at center, #0f1a3a, #030617);">
         <div class="container">
-            <h2 class="display-4 fw-bold">Ready To Build Something Incredible?</h2>
-            <p class="fs-5 text-secondary mb-4">Let's transform your vision into a powerful digital product.</p><a
-                href="#contact" class="btn btn-gradient btn-lg px-5">Book A Consultation →</a>
+            <h2 class="display-4 fw-bold">Ready to turn your idea into reality?</h2>
+            <p class="fs-5 text-secondary mb-4">Let's build your next mobile app or web platform with Flutter, Laravel,
+                or React.</p>
+            <a href="#contact" class="btn btn-gradient btn-lg px-5">Book a Free Consultation →</a>
         </div>
     </section>
 
@@ -675,19 +664,18 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-5" data-aos="fade-right">
-                    <h2 class="section-title">Let’s Connect</h2>
-                    <p class="text-secondary"><i class="fas fa-envelope me-2 text-primary"></i> c0d3.kraft@gmail.com</p>
-                    <p class="text-secondary"><i class="fas fa-phone-alt me-2 text-primary"></i> +233 2460 13840 / +233
-                        2615 98852</p>
-                    <p class="text-secondary"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Accra/ Kumasi,
-                        Ghana
-                    </p>
-                    <div class="mt-4 d-flex gap-3"><a href="#" class="text-white fs-3"><i
-                                class="fab fa-twitter"></i></a><a href="#" class="text-white fs-3"><i
-                                class="fab fa-linkedin"></i></a><a href="#" class="text-white fs-3"><i
-                                class="fab fa-github"></i></a></div>
+                    <h2 class="section-title">Let's connect</h2>
+                    <p class="text-secondary"><i class="fas fa-envelope me-2 text-primary"></i> hello@codekraft.dev</p>
+                    <p class="text-secondary"><i class="fas fa-phone-alt me-2 text-primary"></i> +1 (555) 987-1234</p>
+                    <p class="text-secondary"><i class="fab fa-github me-2 text-primary"></i>
+                        github.com/codekraft-studio</p>
+                    <div class="mt-4 d-flex gap-3">
+                        <a href="#" class="text-white fs-3"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-white fs-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-3"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-                <div class="col-lg-7 reveal reveal-delay-2">
+               <div class="col-lg-7 reveal reveal-delay-2">
                     <div
                         style="background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:2.5rem">
                         <div class="row g-3">
@@ -731,136 +719,151 @@
 
     <!-- Footer -->
     <footer class="py-4 mt-4 border-top border-primary border-opacity-25" style="background: #020617;">
-        <div class="container d-flex justify-content-between flex-wrap text-secondary"><span>© 2026 CODEKRAFT —
-                Innovation Beyond Limits.</span><span><a href="#" class="footer-link me-3">Privacy</a><a href="#"
-                    class="footer-link">Terms</a></span></div>
+        <div class="container d-flex justify-content-between flex-wrap text-secondary">
+            <span>© 2025 CODEKRAFT — Mobile & Web Innovation Studio</span>
+            <span><a href="#" class="footer-link me-3">GitHub</a><a href="#" class="footer-link">Play Store</a></span>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Three.js core -->
     <script type="importmap">
     { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
   </script>
     <script type="module">
         import * as THREE from 'three';
-        AOS.init({ duration: 800, once: true, mirror: false });
+        AOS.init({ duration: 800, once: true });
 
-        // Hero 3D abstract floating torus knot + particle system
+        // Hero 3D Scene
         const canvas = document.getElementById('hero-canvas');
         const scene = new THREE.Scene();
         scene.background = null;
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 0, 8);
+        camera.position.set(0, 1, 9);
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
 
-        const geometry = new THREE.TorusKnotGeometry(1.2, 0.3, 200, 32, 3, 4);
-        const material = new THREE.MeshStandardMaterial({ color: 0x2f80ff, emissive: 0x0a2a5a, roughness: 0.2, metalness: 0.8 });
-        const knot = new THREE.Mesh(geometry, material);
-        scene.add(knot);
+        const geometry = new THREE.IcosahedronGeometry(1.2, 0);
+        const material = new THREE.MeshStandardMaterial({ color: 0x2f80ff, emissive: 0x0a2a5a, roughness: 0.3, metalness: 0.7 });
+        const coreMesh = new THREE.Mesh(geometry, material);
+        scene.add(coreMesh);
 
-        const ambientLight = new THREE.AmbientLight(0x404060);
-        scene.add(ambientLight);
+        const wireframeMat = new THREE.MeshBasicMaterial({ color: 0x88aaff, wireframe: true, transparent: true, opacity: 0.25 });
+        const wireframeMesh = new THREE.Mesh(geometry, wireframeMat);
+        scene.add(wireframeMesh);
+
+        const ambient = new THREE.AmbientLight(0x404060);
+        scene.add(ambient);
         const dirLight = new THREE.DirectionalLight(0xffffff, 1);
         dirLight.position.set(2, 3, 4);
         scene.add(dirLight);
-        const backLight = new THREE.PointLight(0x2f80ff, 0.5);
+        const backLight = new THREE.PointLight(0x2f80ff, 0.6);
         backLight.position.set(-1, 1, -3);
         scene.add(backLight);
 
-        const starsGeometry = new THREE.BufferGeometry();
-        const starsCount = 1200;
-        const starPositions = new Float32Array(starsCount * 3);
-        for (let i = 0; i < starsCount; i++) {
-            starPositions[i * 3] = (Math.random() - 0.5) * 200;
-            starPositions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-            starPositions[i * 3 + 2] = (Math.random() - 0.5) * 80 - 40;
+        const starGeo = new THREE.BufferGeometry();
+        const starCount = 1500;
+        const starPos = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount; i++) {
+            starPos[i * 3] = (Math.random() - 0.5) * 200;
+            starPos[i * 3 + 1] = (Math.random() - 0.5) * 100;
+            starPos[i * 3 + 2] = (Math.random() - 0.5) * 80 - 40;
         }
-        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.08, transparent: true, opacity: 0.6 });
-        const stars = new THREE.Points(starsGeometry, starMaterial);
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.08, transparent: true, opacity: 0.6 }));
         scene.add(stars);
 
-        function animate() {
-            requestAnimationFrame(animate);
-            knot.rotation.x += 0.005;
-            knot.rotation.y += 0.01;
-            knot.rotation.z += 0.007;
-            stars.rotation.y += 0.0005;
-            stars.rotation.x += 0.0003;
+        function animateHero() {
+            requestAnimationFrame(animateHero);
+            coreMesh.rotation.x += 0.003;
+            coreMesh.rotation.y += 0.005;
+            wireframeMesh.rotation.x = coreMesh.rotation.x;
+            wireframeMesh.rotation.y = coreMesh.rotation.y;
+            stars.rotation.y -= 0.0002;
             renderer.render(scene, camera);
         }
-        animate();
+        animateHero();
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // small rotating cube for about section (second canvas)
+        // rotating cube for about section
         const cubeCanvas = document.getElementById('rotatingCubeCanvas');
         if (cubeCanvas) {
             const scene2 = new THREE.Scene();
             const cam2 = new THREE.PerspectiveCamera(50, 1, 0.1, 10);
-            cam2.position.z = 2;
+            cam2.position.z = 2.2;
             const renderer2 = new THREE.WebGLRenderer({ canvas: cubeCanvas, alpha: true });
             renderer2.setSize(280, 200);
             const boxGeo = new THREE.BoxGeometry(1, 1, 1);
             const edgesGeo = new THREE.EdgesGeometry(boxGeo);
-            const wireMat = new THREE.LineBasicMaterial({ color: 0x2f80ff });
-            const wireframe = new THREE.LineSegments(edgesGeo, wireMat);
-            scene2.add(wireframe);
-            const innerMat = new THREE.MeshStandardMaterial({ color: 0x0057D9, transparent: true, opacity: 0.2 });
-            const cubeSolid = new THREE.Mesh(boxGeo, innerMat);
-            scene2.add(cubeSolid);
-            const ambient2 = new THREE.AmbientLight(0x445566);
-            scene2.add(ambient2);
-            function animCube() { requestAnimationFrame(animCube); cubeSolid.rotation.x += 0.01; cubeSolid.rotation.y += 0.015; wireframe.rotation.x += 0.01; wireframe.rotation.y += 0.015; renderer2.render(scene2, cam2); }
-            animCube();
-            window.addEventListener('resize', () => renderer2.setSize(280, 200));
+            const wire = new THREE.LineSegments(edgesGeo, new THREE.LineBasicMaterial({ color: 0x2f80ff }));
+            const solidMat = new THREE.MeshStandardMaterial({ color: 0x0057D9, transparent: true, opacity: 0.2 });
+            const cube = new THREE.Mesh(boxGeo, solidMat);
+            scene2.add(cube);
+            scene2.add(wire);
+            scene2.add(new THREE.AmbientLight(0x335588));
+            function anim() { requestAnimationFrame(anim); cube.rotation.x += 0.01; cube.rotation.y += 0.015; wire.rotation.x = cube.rotation.x; wire.rotation.y = cube.rotation.y; renderer2.render(scene2, cam2); }
+            anim();
         }
 
-        // cursor glow effect
+        // cursor glow
         const cursor = document.getElementById('cursorGlow');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+            cursor.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
         });
 
-        // Animated Counters (Why Choose Us)
+        // animated counters
         function startCounters() {
             const counters = [
-                { el: document.getElementById('counter1'), target: 58, current: 0 },
-                { el: document.getElementById('counter2'), target: 24, current: 0 },
-                { el: document.getElementById('counter3'), target: 99, current: 0, suffix: '%' },
-                { el: document.getElementById('counter4'), target: 38, current: 0 }
+                { el: document.getElementById('counter1'), target: 8, current: 0 },
+                { el: document.getElementById('counter2'), target: 3, current: 0 },
+                { el: document.getElementById('counter3'), target: 25000, current: 0 },
+                { el: document.getElementById('counter4'), target: 6, current: 0 }
             ];
             const interval = setInterval(() => {
                 let allDone = true;
-                counters.forEach(c => { if (c.current < c.target) { c.current += Math.ceil((c.target - c.current) / 12); allDone = false; c.el.innerText = c.current + (c.suffix || ''); } else if (c.el.innerText != c.target + (c.suffix || '')) c.el.innerText = c.target + (c.suffix || ''); });
+                counters.forEach(c => {
+                    if (c.current < c.target) {
+                        c.current += Math.ceil((c.target - c.current) / 15);
+                        allDone = false;
+                        c.el.innerText = c.current + (c.target === 25000 ? '+' : '');
+                    } else c.el.innerText = c.target + (c.target === 25000 ? '+' : '');
+                });
                 if (allDone) clearInterval(interval);
-            }, 40);
+            }, 35);
         }
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { startCounters(); observer.disconnect(); } }); }, { threshold: 0.5 });
-        const countersSection = document.querySelector('#counter1')?.closest('section');
-        if (countersSection) observer.observe(countersSection);
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { startCounters(); observer.disconnect(); } }); }, { threshold: 0.5 });
+        const statsSection = document.getElementById('counter1')?.closest('section');
+        if (statsSection) observer.observe(statsSection);
 
-        // simple contact success
-        document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); document.getElementById('formFeedback').innerText = '✨ Message received! We will reach out soon.'; e.target.reset(); });
+        // contact form feedback
+        document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); document.getElementById('formFeedback').innerHTML = '🎯 Thanks! We’ll reach out within 24 hours.'; e.target.reset(); });
     </script>
     <style>
-        canvas#hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', monospace;
+            color: var(--gold);
         }
 
         .navbar-toggler-icon {
             filter: invert(1);
+        }
+
+        .tech-badge {
+            background: rgba(47, 128, 255, 0.12);
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+        }
+
+        .btn-outline-light-custom:hover i,
+        .btn-gradient i {
+            transition: 0.2s;
         }
     </style>
 </body>
